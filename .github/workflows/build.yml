@@ -12,7 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup Java 8
+    - name: Setup Java 17 (for Gradle)
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    - name: Setup Java 8 (for Minecraft)
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
@@ -21,13 +27,10 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x gradlew
     
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
-      with:
-        gradle-version: '7.4'
-    
     - name: Build with Gradle
       run: ./gradlew build --no-daemon --stacktrace
+      env:
+        JAVA_HOME: ${{ steps.setup-java-17.outputs.path }}
     
     - name: Upload JAR
       uses: actions/upload-artifact@v4
