@@ -18,7 +18,7 @@ archivesBaseName = 'GondasClient-1.16.5'
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 minecraft {
-    mappings channel: 'stable', version: '39-1.16'
+    mappings channel: 'official', version: '1.16.5'
     
     runs {
         client {
