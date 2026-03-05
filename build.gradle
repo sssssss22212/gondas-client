@@ -4,13 +4,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.+'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
 
 version = '1.0.0'
 group = 'com.gondas.client'
@@ -26,21 +25,12 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            
-            mods {
-                gondasclient {
-                    source sourceSets.main
-                }
-            }
+            mods { gondasclient { source sourceSets.main } }
         }
     }
 }
 
-sourceSets.main.resources { srcDir 'src/main/resources' }
-
-repositories {
-    mavenCentral()
-}
+repositories { mavenCentral() }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
@@ -50,14 +40,13 @@ jar {
     manifest {
         attributes([
             "Specification-Title": "GondasClient",
-            "Specification-Vendor": "Gondas",
-            "Specification-Version": "1",
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor": "Gondas",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
 
-jar.finalizedBy('reobfJar')
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
