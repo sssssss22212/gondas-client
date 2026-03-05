@@ -45,7 +45,6 @@ public abstract class Setting {
          if (this.modes.contains(value)) {
             this.value = value;
          }
-
       }
 
       public List<String> getModes() {
@@ -124,23 +123,6 @@ public abstract class Setting {
       }
 
       public void setValue(boolean value) {
-         this.value = value;
-      }
-   }
-   
-   public static class String extends Setting {
-      private java.lang.String value;
-
-      public String(java.lang.String name, java.lang.String value) {
-         this.name = name;
-         this.value = value;
-      }
-
-      public java.lang.String getValue() {
-         return this.value;
-      }
-
-      public void setValue(java.lang.String value) {
          this.value = value;
       }
    }
