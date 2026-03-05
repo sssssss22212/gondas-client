@@ -1,0 +1,17 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="gondasclient"
+version="1.0.0"
+displayName="Gondas Client"
+authors="Gondas"
+description="Gondas Client - Advanced Minecraft Utility Mod"
+
+[[dependencies.gondasclient]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
